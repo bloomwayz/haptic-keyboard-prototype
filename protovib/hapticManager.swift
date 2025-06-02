@@ -1113,25 +1113,15 @@ struct HapticManager {
     
     static func doHaptics_54(engine: CHHapticEngine?) { // Y
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
-        let e1 = CHHapticEvent(eventType: .hapticContinuous,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.5),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.5)
-                               ],
-                               relativeTime: 0, duration: 0.13)
-        let e2 = CHHapticEvent(eventType: .hapticTransient,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.9),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.1)
-                               ],
-                               relativeTime: 0.14)
-        let e3 = CHHapticEvent(eventType: .hapticContinuous,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.7),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.7)
-                               ],
-                               relativeTime: 0.2, duration: 0.1)
-        playHaptics(engine: engine, events: [e1, e2, e3])
+        
+        let attack = HapticManager.makeAttackBlock(attackTime: 0.05, sustainTime: 0.1, peakIntensity: 0.7, baseSharpness: 0.8, startTime: 0.0)
+        let decay = HapticManager.makeDecayBlock(sustainTime: 0.3, decayTime: 0.3, peakIntensity: 0.7, endIntensity: 0.1, baseSharpness: 0.3, startTime: 0.0)
+        
+        HapticManager.playCustomHaptic(engine: engine, blocks: [attack])
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            HapticManager.playCustomHaptic(engine: engine, blocks: [decay])
+        }
     }
     
     // (6,0) ~ (6,4)
