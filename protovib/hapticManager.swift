@@ -900,25 +900,14 @@ struct HapticManager {
     
     static func doHaptics_33(engine: CHHapticEngine?) { // U
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
-        let e1 = CHHapticEvent(eventType: .hapticTransient,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.8),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.2)
-                               ],
-                               relativeTime: 0)
-        let e2 = CHHapticEvent(eventType: .hapticContinuous,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.6),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.6)
-                               ],
-                               relativeTime: 0.1, duration: 0.12)
-        let e3 = CHHapticEvent(eventType: .hapticTransient,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.4),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.8)
-                               ],
-                               relativeTime: 0.23)
-        playHaptics(engine: engine, events: [e1, e2, e3])
+        
+        let decay = HapticManager.makeDecayBlock(sustainTime: 0.1, decayTime: 0.2, peakIntensity: 0.8, endIntensity: 0.3, baseSharpness: 0.3, startTime: 0.0)
+        let attack = HapticManager.makeAttackBlock(attackTime: 0.2, sustainTime: 0.2, peakIntensity: 0.8, baseSharpness: 0.3, startTime: 0.0)
+        HapticManager.playCustomHaptic(engine: engine, blocks: [decay])
+         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            HapticManager.playCustomHaptic(engine: engine, blocks: [attack])
+        }
     }
     
     static func doHaptics_34(engine: CHHapticEngine?) { // I
