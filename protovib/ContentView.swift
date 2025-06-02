@@ -71,9 +71,9 @@ struct ContentView: View {
                         .onEnded { _ in
                             self.longPressTimer?.invalidate()
                             if let block = self.currentBlock {
-                                self.prepareHaptics()
-                                self.playConfirmHaptic(row: block.row, col: block.col)
-                                self.handleKeyInput(row: block.row, col: block.col)
+                                let feedback = UINotificationFeedbackGenerator()
+                                feedback.prepare()
+                                feedback.notificationOccurred(.success)
                             }
                             self.currentBlock = nil
                         }
@@ -134,7 +134,7 @@ struct ContentView: View {
         switch (row, col) {
         case (0,0): HapticManager.doHaptics_test_Q(engine: engine) // Q
         case (0,1): HapticManager.doHaptics_test_W(engine: engine) // W
-        case (0,2), (1,2): HapticManager.doHaptics_test(engine: engine) // Backspace
+        case (0,2), (1,2): doHaptics_delete() // backspace
         case (0,3): HapticManager.doHaptics_03(engine: engine) // O
         case (0,4): HapticManager.doHaptics_04(engine: engine) // P
 
@@ -145,26 +145,24 @@ struct ContentView: View {
 
         case (2,0): HapticManager.doHaptics_test_Z(engine: engine) // Z
         case (2,1): HapticManager.doHaptics_test_X(engine: engine) // X
-        case (2,2): HapticManager.doHaptics_22(engine: engine) // shift
+        case (2,2): doHaptics_shift() // shift
         case (2,3): HapticManager.doHaptics_23(engine: engine) // N
         case (2,4): HapticManager.doHaptics_24(engine: engine) // M
 
         case (3,0): HapticManager.doHaptics_test_E(engine: engine) // E
         case (3,1): HapticManager.doHaptics_test_R(engine: engine) // R
-        case (3,2), (4,2): HapticManager.doHaptics_32(engine: engine) // space
+        case (3,2), (4,2): doHaptics_space() // space
         case (3,3): HapticManager.doHaptics_33(engine: engine) // U
         case (3,4): HapticManager.doHaptics_34(engine: engine) // I
 
         case (4,0): HapticManager.doHaptics_test_D(engine: engine) // D
         case (4,1): HapticManager.doHaptics_test_F(engine: engine) // F
-        //case (4,2): HapticManager.doHaptics_42(engine: engine) // space
-        //case (4,2): HapticManager.doHaptics_31(engine: engine) // space
         case (4,3): HapticManager.doHaptics_43(engine: engine) // H
         case (4,4): HapticManager.doHaptics_44(engine: engine) // J
 
         case (5,0): HapticManager.doHaptics_test_C(engine: engine) // C
         case (5,1): HapticManager.doHaptics_test_V(engine: engine) // V
-        case (5,2), (6,2): HapticManager.doHaptics_52(engine: engine) // enter
+        case (5,2), (6,2): doHaptics_return() // enter
         case (5,3): HapticManager.doHaptics_53(engine: engine) // B
         case (5,4): HapticManager.doHaptics_54(engine: engine) // Y
 
@@ -176,9 +174,29 @@ struct ContentView: View {
         default: print("Invalid input for haptic feedback: row \(row), col \(col)")
         }
     }
+    
+    func doHaptics_delete() {
+        let feedback = UINotificationFeedbackGenerator()
+        feedback.prepare()
+        feedback.notificationOccurred(.error)
+    }
 
-    func playConfirmHaptic(row: Int, col: Int) {
-        HapticManager.doHaptics_onEnded(engine: engine)
+    func doHaptics_shift() {
+        let feedback = UISelectionFeedbackGenerator()
+        feedback.prepare()
+        feedback.selectionChanged()
+    }
+
+    func doHaptics_space() {
+        let feedback = UINotificationFeedbackGenerator()
+        feedback.prepare()
+        feedback.notificationOccurred(.success)
+    }
+
+    func doHaptics_return() {
+        let feedback = UINotificationFeedbackGenerator()
+        feedback.prepare()
+        feedback.notificationOccurred(.warning)
     }
     
     func handleKeyInput(row: Int, col: Int) {
