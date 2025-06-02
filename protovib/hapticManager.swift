@@ -923,25 +923,7 @@ struct HapticManager {
     
     static func doHaptics_34(engine: CHHapticEngine?) { // I
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
-        let e1 = CHHapticEvent(eventType: .hapticContinuous,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.5),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.5)
-                               ],
-                               relativeTime: 0, duration: 0.13)
-        let e2 = CHHapticEvent(eventType: .hapticTransient,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.9),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.1)
-                               ],
-                               relativeTime: 0.14)
-        let e3 = CHHapticEvent(eventType: .hapticContinuous,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.7),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.7)
-                               ],
-                               relativeTime: 0.2, duration: 0.1)
-        playHaptics(engine: engine, events: [e1, e2, e3])
+        doHaptics_AttackDecay(engine: engine, attackTime: 0.0, sustainTime: 0.1, decayTime: 0.2, peakIntensity: 0.6, endIntensity: 0.3, baseSharpness: 0.7)
     }
     
     // (4,0) ~ (4,4)
