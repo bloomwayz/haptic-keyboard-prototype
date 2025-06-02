@@ -202,13 +202,13 @@ struct ContentView: View {
         guard idx < blockLabels.count else { return }
         let label = blockLabels[idx]
         switch label {
-        case "space":
+        case "␣":
             inputText.append(" ")
-        case "✅":
+        case "⏎":
             inputText.append("\n")
-        case "🔄":
+        case "⇧":
             isShifted.toggle()
-        case "↩️":
+        case "⌫":
             if !inputText.isEmpty {
                 inputText.removeLast()
             }
