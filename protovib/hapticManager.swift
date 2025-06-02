@@ -598,27 +598,27 @@ struct HapticManager {
         playHaptics(engine: engine, events: [e1, e2, e3])
     }
     
-    static func doHaptics_03(engine: CHHapticEngine?) {
+    static func doHaptics_03(engine: CHHapticEngine?) { // O
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
-        let e1 = CHHapticEvent(eventType: .hapticContinuous,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.9),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.9)
-                               ],
-                               relativeTime: 0, duration: 0.12)
-        let e2 = CHHapticEvent(eventType: .hapticTransient,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.4),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.1)
-                               ],
-                               relativeTime: 0.13)
-        let e3 = CHHapticEvent(eventType: .hapticContinuous,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.6),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.7)
-                               ],
-                               relativeTime: 0.2, duration: 0.1)
-        playHaptics(engine: engine, events: [e1, e2, e3])
+        
+        let attack1 = HapticManager.makeAttackBlock(attackTime: 0.1, sustainTime: 0.1, peakIntensity: 0.7, baseSharpness: 0.6, startTime: 0.0)
+        let decay1 = HapticManager.makeDecayBlock(sustainTime: 0.1, decayTime: 0.2, peakIntensity: 0.7, endIntensity: 0.2, baseSharpness: 0.5, startTime: 0.0)
+        let attack2 = HapticManager.makeAttackBlock(attackTime: 0.1, sustainTime: 0.1, peakIntensity: 0.7, baseSharpness: 0.6, startTime: 0.0)
+        let decay2 = HapticManager.makeDecayBlock(sustainTime: 0.1, decayTime: 0.2, peakIntensity: 0.7, endIntensity: 0.2, baseSharpness: 0.5, startTime: 0.0)
+        
+        HapticManager.playCustomHaptic(engine: engine, blocks: [attack1])
+         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            HapticManager.playCustomHaptic(engine: engine, blocks: [decay1])
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
+            HapticManager.playCustomHaptic(engine: engine, blocks: [attack2])
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            HapticManager.playCustomHaptic(engine: engine, blocks: [decay2])
+        }
     }
     
     static func doHaptics_04(engine: CHHapticEngine?) {
