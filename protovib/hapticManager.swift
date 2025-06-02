@@ -987,6 +987,10 @@ struct HapticManager {
     
     static func doHaptics_43(engine: CHHapticEngine?) { // H
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+        doHaptics_AttackDecay(engine: engine, attackTime: 0.0, sustainTime: 0.1, decayTime: 0.2, peakIntensity: 0.6, endIntensity: 0.3, baseSharpness: 0.7)
+        
+        //
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
         let e1 = CHHapticEvent(eventType: .hapticContinuous,
                                parameters: [
                                 CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.8),
@@ -1010,25 +1014,14 @@ struct HapticManager {
     
     static func doHaptics_44(engine: CHHapticEngine?) { // J
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
-        let e1 = CHHapticEvent(eventType: .hapticTransient,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.4),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.9)
-                               ],
-                               relativeTime: 0)
-        let e2 = CHHapticEvent(eventType: .hapticContinuous,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.9),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.2)
-                               ],
-                               relativeTime: 0.1, duration: 0.14)
-        let e3 = CHHapticEvent(eventType: .hapticTransient,
-                               parameters: [
-                                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.5),
-                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.7)
-                               ],
-                               relativeTime: 0.26)
-        playHaptics(engine: engine, events: [e1, e2, e3])
+        
+        let decay = HapticManager.makeDecayBlock(sustainTime: 0.2, decayTime: 0.1, peakIntensity: 0.8, endIntensity: 0.1, baseSharpness: 0.3, startTime: 0.0)
+        let attack = HapticManager.makeAttackBlock(attackTime: 0.1, sustainTime: 0.1, peakIntensity: 0.6, baseSharpness: 0.3, startTime: 0.0)
+        HapticManager.playCustomHaptic(engine: engine, blocks: [decay])
+         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            HapticManager.playCustomHaptic(engine: engine, blocks: [attack])
+        }
     }
     
     // (5,0) ~ (5,4)
