@@ -13,13 +13,13 @@ struct ContentView: View {
     let cols = 5
 
     let blockLabels: [String] = [
-        "Q", "W", "↩️", "O", "P",
-        "A", "S", "↩️", "K", "L",
-        "Z", "X", "🔄", "N", "M",
-        "E", "R", "space", "U", "I",
-        "D", "F", "space", "H", "J",
-        "C", "V", "✅", "B", "Y",
-        "T", "G", "✅", ",", "?"
+        "Q", "W", "⌫", "O", "P",
+        "A", "S", "⌫", "K", "L",
+        "Z", "X", "⇧", "N", "M",
+        "E", "R", "␣", "U", "I",
+        "D", "F", "␣", "H", "J",
+        "C", "V", "⏎", "B", "Y",
+        "T", "G", "⏎", ",", "?"
     ]
 
     // keyboard layout
@@ -93,13 +93,13 @@ struct ContentView: View {
         let idx = row * cols + col
             let label = blockLabels[idx]
             switch label {
-            case "space":
+            case "␣":
                 return .yellow.opacity(0.7)
-            case "↩️":
+            case "⌫":
                 return .red.opacity(0.7)
-            case "🔄":
+            case "⇧":
                 return .blue.opacity(0.7)
-            case "✅":
+            case "⏎":
                 return .green.opacity(0.7)
             default:
                 // Alternate black and white for normal keys
