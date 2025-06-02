@@ -1016,10 +1016,10 @@ struct HapticManager {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
         
         let decay = HapticManager.makeDecayBlock(sustainTime: 0.2, decayTime: 0.1, peakIntensity: 0.8, endIntensity: 0.1, baseSharpness: 0.3, startTime: 0.0)
-        let attack = HapticManager.makeAttackBlock(attackTime: 0.1, sustainTime: 0.1, peakIntensity: 0.6, baseSharpness: 0.3, startTime: 0.0)
+        let attack = HapticManager.makeAttackBlock(attackTime: 0.1, sustainTime: 0.1, peakIntensity: 0.6, baseSharpness: 0.7, startTime: 0.0)
         HapticManager.playCustomHaptic(engine: engine, blocks: [decay])
          
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             HapticManager.playCustomHaptic(engine: engine, blocks: [attack])
         }
     }
