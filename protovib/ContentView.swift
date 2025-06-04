@@ -74,6 +74,7 @@ struct ContentView: View {
                                 let feedback = UINotificationFeedbackGenerator()
                                 feedback.prepare()
                                 feedback.notificationOccurred(.success)
+                                self.handleKeyInput(row: block.row, col: block.col)
                             }
                             self.currentBlock = nil
                         }
