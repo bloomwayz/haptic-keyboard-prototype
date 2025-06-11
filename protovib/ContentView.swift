@@ -132,8 +132,7 @@ struct ContentView: View {
         case (1,0): HapticManager.doHaptics_A(engine: engine) // A
         //case (1,1): HapticManager.doHaptics_11(engine: engine) // S
         case (1,1): HapticManager.doHaptics_S(engine: engine) // S
-        //case (1,2): HapticManager.doHaptics_12(engine: engine) // Backspace
-        //case (1,2): HapticManager.doHaptics_02(engine: engine) // Backspace
+        case (1,2): doHaptics_delete() // Backspace
         case (1,3): HapticManager.doHaptics_13(engine: engine) // K
         case (1,4): HapticManager.doHaptics_14(engine: engine) // L
 
