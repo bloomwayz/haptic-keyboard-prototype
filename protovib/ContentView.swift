@@ -15,8 +15,8 @@ struct ContentView: View {
 
     // All labels lowercase except for special keys
     let baseBlockLabels: [String] = [
-        "q", "w", "⌦", "o", "p",
-        "a", "s", "⌦", "k", "l",
+        "q", "w", "⌫", "o", "p",
+        "a", "s", "⌫", "k", "l",
         "z", "x", "⇧", "n", "m",
         "e", "r", "␣", "u", "i",
         "d", "f", "␣", "h", "j",
@@ -108,7 +108,7 @@ struct ContentView: View {
         switch label {
         case "␣":
             return .yellow.opacity(0.7)
-        case "⌦":
+        case "⌫":
             return .red.opacity(0.7)
         case "⇧":
             return .blue.opacity(0.7)
@@ -216,7 +216,7 @@ struct ContentView: View {
         case "⇧":
             //isShifted.toggle()
             break
-        case "⌦":
+        case "⌫":
             if !inputText.isEmpty {
                 inputText.removeLast()
             }
