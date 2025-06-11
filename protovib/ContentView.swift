@@ -28,6 +28,8 @@ struct ContentView: View {
         baseBlockLabels.map { label in
             if label.count == 1 && label.range(of: "[a-z]", options: .regularExpression) != nil {
                 return isShifted ? label.uppercased() : label.lowercased()
+            } else if label == "⇧" {
+                return isShifted ? "⇪" : "⇧"
             } else {
                 return label
             }
@@ -112,6 +114,8 @@ struct ContentView: View {
             return .red.opacity(0.7)
         case "⇧":
             return .blue.opacity(0.7)
+        case "⇪":
+            return .blue.opacity(0.3)
         case "⏎":
             return .green.opacity(0.7)
         default:
@@ -215,6 +219,8 @@ struct ContentView: View {
             inputText.append("\n")
         case "⇧":
             //isShifted.toggle()
+            break
+        case "⇪":
             break
         case "⌫":
             if !inputText.isEmpty {
