@@ -10,27 +10,8 @@
 		6F96EC452DECD9D700424388 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6F96EC442DECD9D300424388 /* .gitignore */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		6F8F6D672DE6A10D00E7C7A0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6F8F6D512DE6A10C00E7C7A0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6F8F6D582DE6A10D00E7C7A0;
-			remoteInfo = protovib;
-		};
-		6F8F6D712DE6A10D00E7C7A0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6F8F6D512DE6A10C00E7C7A0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6F8F6D582DE6A10D00E7C7A0;
-			remoteInfo = protovib;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		6F8F6D592DE6A10D00E7C7A0 /* protovib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = protovib.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F8F6D662DE6A10D00E7C7A0 /* protovibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = protovibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F8F6D702DE6A10D00E7C7A0 /* protovibUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = protovibUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F96EC442DECD9D300424388 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -40,34 +21,10 @@
 			path = protovib;
 			sourceTree = "<group>";
 		};
-		6F8F6D692DE6A10D00E7C7A0 /* protovibTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = protovibTests;
-			sourceTree = "<group>";
-		};
-		6F8F6D732DE6A10D00E7C7A0 /* protovibUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = protovibUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6F8F6D562DE6A10D00E7C7A0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6F8F6D632DE6A10D00E7C7A0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6F8F6D6D2DE6A10D00E7C7A0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -82,8 +39,6 @@
 			children = (
 				6F96EC442DECD9D300424388 /* .gitignore */,
 				6F8F6D5B2DE6A10D00E7C7A0 /* protovib */,
-				6F8F6D692DE6A10D00E7C7A0 /* protovibTests */,
-				6F8F6D732DE6A10D00E7C7A0 /* protovibUITests */,
 				6F8F6D5A2DE6A10D00E7C7A0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,8 +47,6 @@
 			isa = PBXGroup;
 			children = (
 				6F8F6D592DE6A10D00E7C7A0 /* protovib.app */,
-				6F8F6D662DE6A10D00E7C7A0 /* protovibTests.xctest */,
-				6F8F6D702DE6A10D00E7C7A0 /* protovibUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,52 +76,6 @@
 			productReference = 6F8F6D592DE6A10D00E7C7A0 /* protovib.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6F8F6D652DE6A10D00E7C7A0 /* protovibTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6F8F6D7D2DE6A10D00E7C7A0 /* Build configuration list for PBXNativeTarget "protovibTests" */;
-			buildPhases = (
-				6F8F6D622DE6A10D00E7C7A0 /* Sources */,
-				6F8F6D632DE6A10D00E7C7A0 /* Frameworks */,
-				6F8F6D642DE6A10D00E7C7A0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6F8F6D682DE6A10D00E7C7A0 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				6F8F6D692DE6A10D00E7C7A0 /* protovibTests */,
-			);
-			name = protovibTests;
-			packageProductDependencies = (
-			);
-			productName = protovibTests;
-			productReference = 6F8F6D662DE6A10D00E7C7A0 /* protovibTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		6F8F6D6F2DE6A10D00E7C7A0 /* protovibUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6F8F6D802DE6A10D00E7C7A0 /* Build configuration list for PBXNativeTarget "protovibUITests" */;
-			buildPhases = (
-				6F8F6D6C2DE6A10D00E7C7A0 /* Sources */,
-				6F8F6D6D2DE6A10D00E7C7A0 /* Frameworks */,
-				6F8F6D6E2DE6A10D00E7C7A0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6F8F6D722DE6A10D00E7C7A0 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				6F8F6D732DE6A10D00E7C7A0 /* protovibUITests */,
-			);
-			name = protovibUITests;
-			packageProductDependencies = (
-			);
-			productName = protovibUITests;
-			productReference = 6F8F6D702DE6A10D00E7C7A0 /* protovibUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -181,14 +88,6 @@
 				TargetAttributes = {
 					6F8F6D582DE6A10D00E7C7A0 = {
 						CreatedOnToolsVersion = 16.3;
-					};
-					6F8F6D652DE6A10D00E7C7A0 = {
-						CreatedOnToolsVersion = 16.3;
-						TestTargetID = 6F8F6D582DE6A10D00E7C7A0;
-					};
-					6F8F6D6F2DE6A10D00E7C7A0 = {
-						CreatedOnToolsVersion = 16.3;
-						TestTargetID = 6F8F6D582DE6A10D00E7C7A0;
 					};
 				};
 			};
@@ -207,8 +106,6 @@
 			projectRoot = "";
 			targets = (
 				6F8F6D582DE6A10D00E7C7A0 /* protovib */,
-				6F8F6D652DE6A10D00E7C7A0 /* protovibTests */,
-				6F8F6D6F2DE6A10D00E7C7A0 /* protovibUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -222,20 +119,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6F8F6D642DE6A10D00E7C7A0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6F8F6D6E2DE6A10D00E7C7A0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -246,34 +129,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6F8F6D622DE6A10D00E7C7A0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6F8F6D6C2DE6A10D00E7C7A0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		6F8F6D682DE6A10D00E7C7A0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6F8F6D582DE6A10D00E7C7A0 /* protovib */;
-			targetProxy = 6F8F6D672DE6A10D00E7C7A0 /* PBXContainerItemProxy */;
-		};
-		6F8F6D722DE6A10D00E7C7A0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6F8F6D582DE6A10D00E7C7A0 /* protovib */;
-			targetProxy = 6F8F6D712DE6A10D00E7C7A0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6F8F6D782DE6A10D00E7C7A0 /* Debug */ = {
@@ -451,74 +307,6 @@
 			};
 			name = Release;
 		};
-		6F8F6D7E2DE6A10D00E7C7A0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.me.protovibTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/protovib.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/protovib";
-			};
-			name = Debug;
-		};
-		6F8F6D7F2DE6A10D00E7C7A0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.me.protovibTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/protovib.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/protovib";
-			};
-			name = Release;
-		};
-		6F8F6D812DE6A10D00E7C7A0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.me.protovibUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = protovib;
-			};
-			name = Debug;
-		};
-		6F8F6D822DE6A10D00E7C7A0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.me.protovibUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = protovib;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -536,24 +324,6 @@
 			buildConfigurations = (
 				6F8F6D7B2DE6A10D00E7C7A0 /* Debug */,
 				6F8F6D7C2DE6A10D00E7C7A0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6F8F6D7D2DE6A10D00E7C7A0 /* Build configuration list for PBXNativeTarget "protovibTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6F8F6D7E2DE6A10D00E7C7A0 /* Debug */,
-				6F8F6D7F2DE6A10D00E7C7A0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6F8F6D802DE6A10D00E7C7A0 /* Build configuration list for PBXNativeTarget "protovibUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6F8F6D812DE6A10D00E7C7A0 /* Debug */,
-				6F8F6D822DE6A10D00E7C7A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
