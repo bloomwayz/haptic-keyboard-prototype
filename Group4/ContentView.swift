@@ -9,11 +9,11 @@ struct ContentView: View {
 
     @State private var inputText: String = ""
     @State private var isShifted: Bool = false
+    @State private var useHangulKeyboard: Bool = false
 
     let rows = 7
     let cols = 5
 
-    // All labels lowercase except for special keys
     let baseBlockLabels: [String] = [
         "q", "w", "⌫", "o", "p",
         "a", "s", "⌫", "k", "l",
@@ -38,59 +38,76 @@ struct ContentView: View {
 
     var body: some View {
         GeometryReader { geo in
-            VStack {
-                // Use UITextView wrapped in UIViewRepresentable for better copy/paste support
+            VStack(spacing: 0) {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        useHangulKeyboard.toggle()
+                    }) {
+                        Text(useHangulKeyboard ? "ABC" : "한글")
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(8)
+                    }
+                    .padding()
+                }
+
                 TextView(text: $inputText)
                     .frame(height: 80)
                     .padding()
                     .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.3)))
-                Color.clear
-                    .contentShape(Rectangle())
-                    .onTapGesture { }
+
                 Spacer()
-                VStack(spacing: 0) {
-                    ForEach(0..<rows, id: \.self) { row in
-                        HStack(spacing: 0) {
-                            ForEach(0..<cols, id: \.self) { col in
-                                let idx = row * cols + col
-                                ZStack {
-                                    Rectangle()
-                                        .fill(self.colorFor(row: row, col: col))
-                                        .frame(width: geo.size.width / CGFloat(cols),
-                                               height: geo.size.width / CGFloat(cols))
-                                    Text(blockLabels[idx])
-                                        .font(.system(size: 24))
-                                        .foregroundColor(self.colorFor(row: row, col: col) == .black ? .white : .black)
+
+                if useHangulKeyboard {
+                    HangulKeyboardView(text: $inputText)
+                        .frame(height: 260)
+                } else {
+                    VStack(spacing: 0) {
+                        ForEach(0..<rows, id: \.self) { row in
+                            HStack(spacing: 0) {
+                                ForEach(0..<cols, id: \.self) { col in
+                                    let idx = row * cols + col
+                                    ZStack {
+                                        Rectangle()
+                                            .fill(self.colorFor(row: row, col: col))
+                                            .frame(width: geo.size.width / CGFloat(cols),
+                                                   height: geo.size.width / CGFloat(cols))
+                                        Text(blockLabels[idx])
+                                            .font(.system(size: 24))
+                                            .foregroundColor(self.colorFor(row: row, col: col) == .black ? .white : .black)
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                .gesture(
-                    DragGesture(minimumDistance: 0)
-                        .onChanged { value in
-                            let block = self.blockAt(location: value.location, in: geo.size)
-                            if block?.row != self.currentBlock?.row || block?.col != self.currentBlock?.col {
-                                self.currentBlock = block
-                                self.longPressTriggered = false
-                                self.longPressTimer?.invalidate()
-                                if let block = block {
-                                    self.prepareHaptics()
-                                    self.playBlockHaptic(row: block.row, col: block.col)
+                    .gesture(
+                        DragGesture(minimumDistance: 0)
+                            .onChanged { value in
+                                let block = self.blockAt(location: value.location, in: geo.size)
+                                if block?.row != self.currentBlock?.row || block?.col != self.currentBlock?.col {
+                                    self.currentBlock = block
+                                    self.longPressTriggered = false
+                                    self.longPressTimer?.invalidate()
+                                    if let block = block {
+                                        self.prepareHaptics()
+                                        self.playBlockHaptic(row: block.row, col: block.col)
+                                    }
                                 }
                             }
-                        }
-                        .onEnded { _ in
-                            self.longPressTimer?.invalidate()
-                            if let block = self.currentBlock {
-                                let feedback = UINotificationFeedbackGenerator()
-                                feedback.prepare()
-                                feedback.notificationOccurred(.success)
-                                self.handleKeyInput(row: block.row, col: block.col)
+                            .onEnded { _ in
+                                self.longPressTimer?.invalidate()
+                                if let block = self.currentBlock {
+                                    let feedback = UINotificationFeedbackGenerator()
+                                    feedback.prepare()
+                                    feedback.notificationOccurred(.success)
+                                    self.handleKeyInput(row: block.row, col: block.col)
+                                }
+                                self.currentBlock = nil
                             }
-                            self.currentBlock = nil
-                        }
-                )
+                    )
+                }
             }
         }
     }
@@ -123,6 +140,7 @@ struct ContentView: View {
         }
     }
 
+    // Reuse your haptic and input logic here
     func prepareHaptics() {
         if engine == nil {
             do {
@@ -133,7 +151,7 @@ struct ContentView: View {
             }
         }
     }
-
+    
     private func playHaptics(events: [CHHapticEvent]) {
         do {
             let pattern = try CHHapticPattern(events: events, parameters: [])
@@ -144,7 +162,6 @@ struct ContentView: View {
         }
     }
 
-    // 이전 매핑입니다. 이 매핑은 반영하지 마시고 원래 매핑을 따르시면 됩니다.
     func playBlockHaptic(row: Int, col: Int) {
         switch (row, col) {
         case (0,0): HapticManager.doHaptics_test_Q(engine: engine)
@@ -183,6 +200,28 @@ struct ContentView: View {
         }
     }
 
+    func handleKeyInput(row: Int, col: Int) {
+        let idx = row * cols + col
+        guard idx < blockLabels.count else { return }
+        let label = blockLabels[idx]
+        switch label {
+        case "␣":
+            inputText.append(" ")
+        case "⏎":
+            inputText.append("\n")
+        case "⇧", "⇪":
+            break
+        case "⌫":
+            if !inputText.isEmpty {
+                inputText.removeLast()
+            }
+        case "":
+            break
+        default:
+            inputText.append(label)
+        }
+    }
+    
     func doHaptics_delete() {
         let feedback = UINotificationFeedbackGenerator()
         feedback.prepare()
@@ -207,90 +246,53 @@ struct ContentView: View {
         feedback.prepare()
         feedback.notificationOccurred(.warning)
     }
-
-    func handleKeyInput(row: Int, col: Int) {
-        let idx = row * cols + col
-        guard idx < blockLabels.count else { return }
-        let label = blockLabels[idx]
-        switch label {
-        case "␣":
-            inputText.append(" ")
-        case "⏎":
-            inputText.append("\n")
-        case "⇧":
-            //isShifted.toggle()
-            break
-        case "⇪":
-            break
-        case "⌫":
-            if !inputText.isEmpty {
-                inputText.removeLast()
-            }
-        case "":
-            break
-        default:
-            inputText.append(label)
-            //if isShifted {
-            //    isShifted = false
-            //}
-        }
-    }
 }
 
 // UITextView wrapper that supports copy/paste without keyboard activation
 struct TextView: UIViewRepresentable {
     @Binding var text: String
-    
+
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
         textView.delegate = context.coordinator
-        textView.font = UIFont.systemFont(ofSize: 28) // Similar to .title font
+        textView.font = UIFont.systemFont(ofSize: 28)
         textView.backgroundColor = UIColor.clear
-        textView.textContainerInset = UIEdgeInsets.zero
+        textView.textContainerInset = .zero
         textView.textContainer.lineFragmentPadding = 0
         textView.isScrollEnabled = true
-        
-        // This is the key: override input view to prevent keyboard
-        textView.inputView = UIView()
+        textView.inputView = UIView() // disables system keyboard
         textView.inputAccessoryView = UIView()
-        
-        // Enable selection and copy/paste
         textView.isSelectable = true
         textView.isEditable = true
-        textView.isUserInteractionEnabled = true
-        
         return textView
     }
-    
+
     func updateUIView(_ uiView: UITextView, context: Context) {
         if uiView.text != text {
             uiView.text = text
         }
     }
-    
+
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-    
+
     class Coordinator: NSObject, UITextViewDelegate {
         var parent: TextView
-        
+
         init(_ parent: TextView) {
             self.parent = parent
         }
-        
+
         func textViewDidChange(_ textView: UITextView) {
             parent.text = textView.text
         }
-        
-        // Override to allow paste operations
+
         func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-            // Allow programmatic text changes (like paste operations)
             return true
         }
     }
 }
 
-#Preview {
-    ContentView()
-}
+
+

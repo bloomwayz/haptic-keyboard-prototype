@@ -6,17 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		6F96EC452DECD9D700424388 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6F96EC442DECD9D300424388 /* .gitignore */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		6F8F6D592DE6A10D00E7C7A0 /* Group4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Group4.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F96EC442DECD9D300424388 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		FC0206D92DFB188500BF7210 /* Group4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Group4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		6F8F6D5B2DE6A10D00E7C7A0 /* Group4 */ = {
+		FC0206DB2DFB188500BF7210 /* Group4 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Group4;
 			sourceTree = "<group>";
@@ -24,7 +19,7 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6F8F6D562DE6A10D00E7C7A0 /* Frameworks */ = {
+		FC0206D62DFB188500BF7210 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -34,19 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6F8F6D502DE6A10C00E7C7A0 = {
+		FC0206D02DFB188500BF7210 = {
 			isa = PBXGroup;
 			children = (
-				6F96EC442DECD9D300424388 /* .gitignore */,
-				6F8F6D5B2DE6A10D00E7C7A0 /* Group4 */,
-				6F8F6D5A2DE6A10D00E7C7A0 /* Products */,
+				FC0206DB2DFB188500BF7210 /* Group4 */,
+				FC0206DA2DFB188500BF7210 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		6F8F6D5A2DE6A10D00E7C7A0 /* Products */ = {
+		FC0206DA2DFB188500BF7210 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6F8F6D592DE6A10D00E7C7A0 /* Group4.app */,
+				FC0206D92DFB188500BF7210 /* Group4.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,75 +48,74 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6F8F6D582DE6A10D00E7C7A0 /* Group4 */ = {
+		FC0206D82DFB188500BF7210 /* Group4 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6F8F6D7A2DE6A10D00E7C7A0 /* Build configuration list for PBXNativeTarget "Group4" */;
+			buildConfigurationList = FC0206FA2DFB188600BF7210 /* Build configuration list for PBXNativeTarget "Group4" */;
 			buildPhases = (
-				6F8F6D552DE6A10D00E7C7A0 /* Sources */,
-				6F8F6D562DE6A10D00E7C7A0 /* Frameworks */,
-				6F8F6D572DE6A10D00E7C7A0 /* Resources */,
+				FC0206D52DFB188500BF7210 /* Sources */,
+				FC0206D62DFB188500BF7210 /* Frameworks */,
+				FC0206D72DFB188500BF7210 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				6F8F6D5B2DE6A10D00E7C7A0 /* Group4 */,
+				FC0206DB2DFB188500BF7210 /* Group4 */,
 			);
 			name = Group4;
 			packageProductDependencies = (
 			);
-			productName = protovib;
-			productReference = 6F8F6D592DE6A10D00E7C7A0 /* Group4.app */;
+			productName = Group4;
+			productReference = FC0206D92DFB188500BF7210 /* Group4.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6F8F6D512DE6A10C00E7C7A0 /* Project object */ = {
+		FC0206D12DFB188500BF7210 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
-					6F8F6D582DE6A10D00E7C7A0 = {
+					FC0206D82DFB188500BF7210 = {
 						CreatedOnToolsVersion = 16.3;
 					};
 				};
 			};
-			buildConfigurationList = 6F8F6D542DE6A10C00E7C7A0 /* Build configuration list for PBXProject "Group4" */;
+			buildConfigurationList = FC0206D42DFB188500BF7210 /* Build configuration list for PBXProject "Group4" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 6F8F6D502DE6A10C00E7C7A0;
+			mainGroup = FC0206D02DFB188500BF7210;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 6F8F6D5A2DE6A10D00E7C7A0 /* Products */;
+			productRefGroup = FC0206DA2DFB188500BF7210 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6F8F6D582DE6A10D00E7C7A0 /* Group4 */,
+				FC0206D82DFB188500BF7210 /* Group4 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6F8F6D572DE6A10D00E7C7A0 /* Resources */ = {
+		FC0206D72DFB188500BF7210 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F96EC452DECD9D700424388 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6F8F6D552DE6A10D00E7C7A0 /* Sources */ = {
+		FC0206D52DFB188500BF7210 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -132,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		6F8F6D782DE6A10D00E7C7A0 /* Debug */ = {
+		FC0206F82DFB188600BF7210 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -167,6 +160,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8XY8G6RTY4;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -195,7 +189,7 @@
 			};
 			name = Debug;
 		};
-		6F8F6D792DE6A10D00E7C7A0 /* Release */ = {
+		FC0206F92DFB188600BF7210 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -230,6 +224,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8XY8G6RTY4;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -251,14 +246,14 @@
 			};
 			name = Release;
 		};
-		6F8F6D7B2DE6A10D00E7C7A0 /* Debug */ = {
+		FC0206FB2DFB188600BF7210 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7Z6UT2LMCX;
+				DEVELOPMENT_TEAM = 8XY8G6RTY4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -266,12 +261,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.young.protovib;
+				PRODUCT_BUNDLE_IDENTIFIER = summerBreeze.Group4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -279,14 +275,14 @@
 			};
 			name = Debug;
 		};
-		6F8F6D7C2DE6A10D00E7C7A0 /* Release */ = {
+		FC0206FC2DFB188600BF7210 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7Z6UT2LMCX;
+				DEVELOPMENT_TEAM = 8XY8G6RTY4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -294,12 +290,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.young.protovib;
+				PRODUCT_BUNDLE_IDENTIFIER = summerBreeze.Group4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -310,25 +307,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6F8F6D542DE6A10C00E7C7A0 /* Build configuration list for PBXProject "Group4" */ = {
+		FC0206D42DFB188500BF7210 /* Build configuration list for PBXProject "Group4" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6F8F6D782DE6A10D00E7C7A0 /* Debug */,
-				6F8F6D792DE6A10D00E7C7A0 /* Release */,
+				FC0206F82DFB188600BF7210 /* Debug */,
+				FC0206F92DFB188600BF7210 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6F8F6D7A2DE6A10D00E7C7A0 /* Build configuration list for PBXNativeTarget "Group4" */ = {
+		FC0206FA2DFB188600BF7210 /* Build configuration list for PBXNativeTarget "Group4" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6F8F6D7B2DE6A10D00E7C7A0 /* Debug */,
-				6F8F6D7C2DE6A10D00E7C7A0 /* Release */,
+				FC0206FB2DFB188600BF7210 /* Debug */,
+				FC0206FC2DFB188600BF7210 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 6F8F6D512DE6A10C00E7C7A0 /* Project object */;
+	rootObject = FC0206D12DFB188500BF7210 /* Project object */;
 }
