@@ -11,6 +11,14 @@ struct ContentView: View {
     @State private var isShifted: Bool = false
     @State private var useHangulKeyboard: Bool = false
 
+    // caps lock
+    @State private var isCapsLock: Bool = false 
+    @State private var shiftTapCount: Int = 0 
+    @State private var lastShiftTapTime: Date? = nil 
+
+    // consecutive deletion 
+    @State private var backspaceTimer: Timer? 
+
     let rows = 7
     let cols = 5
 
@@ -24,12 +32,15 @@ struct ContentView: View {
         "t", "g", "⏎", ",", "?"
     ]
 
+    // caps lock 
     var blockLabels: [String] {
         baseBlockLabels.map { label in
             if label.count == 1 && label.range(of: "[a-z]", options: .regularExpression) != nil {
-                return isShifted ? label.uppercased() : label.lowercased()
-            } else if label == "⇧" {
-                return isShifted ? "⇪" : "⇧"
+                if isCapsLock || isShifted {
+                    return label.uppercased()
+                } else {
+                    return label.lowercased()
+                }
             } else {
                 return label
             }
@@ -78,6 +89,23 @@ struct ContentView: View {
                                             .font(.system(size: 24))
                                             .foregroundColor(self.colorFor(row: row, col: col) == .black ? .white : .black)
                                     }
+                                    // consecutive deletion
+                                   .simultaneousGesture(
+                                        LongPressGesture(minimumDuration: 0.3)
+                                        .onEnded { _ in
+                                            if blockLabels[idx] == "⌦" {
+                                                startBackspace()
+                                            }
+                                        }
+                                    )
+                                    .simultaneousGesture(
+                                        DragGesture(minimumDistance: 0)
+                                            .onEnded { _ in
+                                                if blockLabels[idx] == "⌦" {
+                                                    stopBackspace()
+                                                }
+                                            }
+                                    )
                                 }
                             }
                         }
@@ -199,28 +227,6 @@ struct ContentView: View {
         default: print("Invalid input for haptic feedback: row \(row), col \(col)")
         }
     }
-
-    func handleKeyInput(row: Int, col: Int) {
-        let idx = row * cols + col
-        guard idx < blockLabels.count else { return }
-        let label = blockLabels[idx]
-        switch label {
-        case "␣":
-            inputText.append(" ")
-        case "⏎":
-            inputText.append("\n")
-        case "⇧", "⇪":
-            break
-        case "⌫":
-            if !inputText.isEmpty {
-                inputText.removeLast()
-            }
-        case "":
-            break
-        default:
-            inputText.append(label)
-        }
-    }
     
     func doHaptics_delete() {
         let feedback = UINotificationFeedbackGenerator()
@@ -232,7 +238,25 @@ struct ContentView: View {
         let feedback = UISelectionFeedbackGenerator()
         feedback.prepare()
         feedback.selectionChanged()
-        isShifted.toggle()
+        // caps lock
+        let now = Date()
+        if let lastTap = lastShiftTapTime, now.timeIntervalSince(lastTap) < 0.5 {
+            shiftTapCount += 1
+        } else {
+            shiftTapCount = 1
+        }
+        lastShiftTapTime = now
+        
+        if shiftTapCount == 2 {
+            isCapsLock.toggle()
+            isShifted = isCapsLock // caps lock이 켜지면 대문자 유지
+            shiftTapCount = 0
+        } else {
+            if isCapsLock {
+                isCapsLock = false
+            }
+            isShifted.toggle()
+        }
     }
 
     func doHaptics_space() {
@@ -245,6 +269,48 @@ struct ContentView: View {
         let feedback = UINotificationFeedbackGenerator()
         feedback.prepare()
         feedback.notificationOccurred(.warning)
+    }
+}
+
+    // backspace timer 
+    func startBackspace() {
+        stopBackspace()
+        backspaceTimer = Timer.scheduledTimer(withTimeInterval: 0.08, repeats: true) { _ in
+            if !inputText.isEmpty {
+                inputText.removeLast()
+            }
+        }
+    }
+    func stopBackspace() {
+        backspaceTimer?.invalidate()
+        backspaceTimer = nil
+    }
+
+    func handleKeyInput(row: Int, col: Int) {
+        let idx = row * cols + col
+        guard idx < blockLabels.count else { return }
+        let label = blockLabels[idx]
+        switch label {
+        case "␣":
+            inputText.append(" ")
+        case "⏎":
+            inputText.append("\n")
+        case "⇧":
+            // shift/caps lock 상태는 doHaptics_shift에서 처리
+            break
+        case "⌦":
+            if !inputText.isEmpty {
+                inputText.removeLast()
+            }
+        case "":
+            break
+        default:
+            inputText.append(label)
+            // caps lock
+            if isShifted && !isCapsLock && label.range(of: "[a-zA-Z]", options: .regularExpression) != nil {
+                isShifted = false
+            }
+        }
     }
 }
 
