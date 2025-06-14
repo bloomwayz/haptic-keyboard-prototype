@@ -270,7 +270,6 @@ struct ContentView: View {
         feedback.prepare()
         feedback.notificationOccurred(.warning)
     }
-}
 
     // backspace timer 
     func startBackspace() {
