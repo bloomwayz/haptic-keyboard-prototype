@@ -25,7 +25,7 @@ struct ContentView: View {
     let baseBlockLabels: [String] = [
         "q", "w", "⌫", "o", "p",
         "a", "s", "⌫", "k", "l",
-        "z", "x", "⇧", "n", "m",
+        "z", "x", "shift", "n", "m",
         "e", "r", "␣", "u", "i",
         "d", "f", "␣", "h", "j",
         "c", "v", "⏎", "b", "y",
@@ -41,6 +41,8 @@ struct ContentView: View {
                 } else {
                     return label.lowercased()
                 }
+            } else if label == "shift" {
+                return isCapsLock ? "capslock.fill" : (isShifted ? "shift.fill" : "shift")
             } else {
                 return label
             }
@@ -80,14 +82,22 @@ struct ContentView: View {
                             HStack(spacing: 0) {
                                 ForEach(0..<cols, id: \.self) { col in
                                     let idx = row * cols + col
+                                    let label = blockLabels[idx]
                                     ZStack {
                                         Rectangle()
                                             .fill(self.colorFor(row: row, col: col))
                                             .frame(width: geo.size.width / CGFloat(cols),
                                                    height: geo.size.width / CGFloat(cols))
-                                        Text(blockLabels[idx])
-                                            .font(.system(size: 24))
-                                            .foregroundColor(self.colorFor(row: row, col: col) == .black ? .white : .black)
+                                        if (label.count > 1) {
+                                            Image(systemName: label)
+                                                .resizable()
+                                                .frame(width: 24, height: 24)
+                                                .foregroundColor(.black)
+                                        } else {
+                                            Text(blockLabels[idx])
+                                                .font(.system(size: 24))
+                                                .foregroundColor(self.colorFor(row: row, col: col) == .black ? .white : .black)
+                                        }
                                     }
                                     // consecutive deletion
                                    .simultaneousGesture(
@@ -157,10 +167,10 @@ struct ContentView: View {
             return .yellow.opacity(0.7)
         case "⌫":
             return .red.opacity(0.7)
-        case "⇧":
+        case "shift":
             return .blue.opacity(0.7)
-        case "⇪":
-            return .blue.opacity(0.3)
+        case "shift.fill", "capslock.fill":
+            return .teal.opacity(0.5)
         case "⏎":
             return .green.opacity(0.7)
         default:
@@ -294,7 +304,7 @@ struct ContentView: View {
             inputText.append(" ")
         case "⏎":
             inputText.append("\n")
-        case "⇧":
+        case "shift", "shift.fill", "capslock.fill":
             // shift/caps lock 상태는 doHaptics_shift에서 처리
             break
         case "⌫":
