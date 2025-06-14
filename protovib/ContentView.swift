@@ -8,6 +8,14 @@ struct ContentView: View {
     @State private var longPressTriggered = false
     @State private var inputText: String = ""
     @State private var isShifted: Bool = false // Shift state
+    
+    // for caps lock
+    @State private var isCapsLock: Bool = false 
+    @State private var shiftTapCount: Int = 0 
+    @State private var lastShiftTapTime: Date? = nil 
+    
+    // for consecutive deletion
+    @State private var backspaceTimer: Timer? 
 
     let rows = 7
     let cols = 5
@@ -44,6 +52,23 @@ struct ContentView: View {
                                         .font(.system(size: 24))
                                         .foregroundColor(self.colorFor(row: row, col: col) == .black ? .white : .black)
                                 }
+                                // consecutive deletion logic
+                               .simultaneousGesture(
+                                    LongPressGesture(minimumDuration: 0.3)
+                                        .onEnded { _ in
+                                            if blockLabels[idx] == "⌦" {
+                                                startBackspace()
+                                            }
+                                        }
+                                )
+                                .simultaneousGesture(
+                                    DragGesture(minimumDistance: 0)
+                                        .onEnded { _ in
+                                            if blockLabels[idx] == "⌦" {
+                                                stopBackspace()
+                                            }
+                                        }
+                                )
                             }
                         }
                     }
@@ -182,6 +207,26 @@ struct ContentView: View {
         let feedback = UISelectionFeedbackGenerator()
         feedback.prepare()
         feedback.selectionChanged()
+
+        // caps lock
+        let now = Date()
+        if let lastTap = lastShiftTapTime, now.timeIntervalSince(lastTap) < 0.5 {
+            shiftTapCount += 1
+        } else {
+            shiftTapCount = 1
+        }
+        lastShiftTapTime = now
+        
+        if shiftTapCount == 2 {
+            isCapsLock.toggle()
+            isShifted = isCapsLock // caps lock이 켜지면 대문자 유지
+            shiftTapCount = 0
+        } else {
+            if isCapsLock {
+                isCapsLock = false
+            }
+            isShifted.toggle()
+        }
     }
     
     func doHaptics_space() {
@@ -194,6 +239,20 @@ struct ContentView: View {
         let feedback = UINotificationFeedbackGenerator()
         feedback.prepare()
         feedback.notificationOccurred(.warning)
+    }
+
+    // back space timer for consecutive deletion
+    func startBackspace() {
+        stopBackspace()
+        backspaceTimer = Timer.scheduledTimer(withTimeInterval: 0.08, repeats: true) { _ in
+            if !inputText.isEmpty {
+                inputText.removeLast()
+            }
+        }
+    }
+    func stopBackspace() {
+        backspaceTimer?.invalidate()
+        backspaceTimer = nil
     }
     
     func handleKeyInput(row: Int, col: Int) {
@@ -214,11 +273,10 @@ struct ContentView: View {
         case "":
             break
         default:
-            if isShifted {
-                inputText.append(label.uppercased())
+            inputText.append(label)
+            // caps lock
+            if isShifted && !isCapsLock && label.range(of: "[a-zA-Z]", options: .regularExpression) != nil {
                 isShifted = false
-            } else {
-                inputText.append(label.lowercased())
             }
         }
     }
