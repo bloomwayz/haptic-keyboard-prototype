@@ -170,9 +170,9 @@ struct ContentView: View {
         case "shift":
             return .blue.opacity(0.7)
         case "shift.fill", "capslock.fill":
-            return .teal.opacity(0.5)
+            return .blue.opacity(0.4)
         case "⏎":
-            return .green.opacity(0.7)
+            return .mint.opacity(0.7)
         default:
             return (row + col) % 2 == 0 ? .white : .black
         }
