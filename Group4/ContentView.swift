@@ -93,7 +93,7 @@ struct ContentView: View {
                                    .simultaneousGesture(
                                         LongPressGesture(minimumDuration: 0.3)
                                         .onEnded { _ in
-                                            if blockLabels[idx] == "⌦" {
+                                            if blockLabels[idx] == "⌫" {
                                                 startBackspace()
                                             }
                                         }
@@ -101,7 +101,7 @@ struct ContentView: View {
                                     .simultaneousGesture(
                                         DragGesture(minimumDistance: 0)
                                             .onEnded { _ in
-                                                if blockLabels[idx] == "⌦" {
+                                                if blockLabels[idx] == "⌫" {
                                                     stopBackspace()
                                                 }
                                             }
@@ -297,7 +297,7 @@ struct ContentView: View {
         case "⇧":
             // shift/caps lock 상태는 doHaptics_shift에서 처리
             break
-        case "⌦":
+        case "⌫":
             if !inputText.isEmpty {
                 inputText.removeLast()
             }
