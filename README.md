@@ -1,5 +1,16 @@
-![header](https://capsule-render.vercel.app/api?type=venom&height=300&text=눈%20감고도%20쓰겠다&textBg=false&desc=저시력자를%20위한%20햅틱%20키보드&descAlignY=70)
+<div align="center">
+  <a href="https://github.com/bloomwayz/hapticky">
+    <img src="https://capsule-render.vercel.app/api?type=venom&height=300&text=눈%20감고도%20쓰겠다&textBg=false&desc=저시력자를%20위한%20햅틱%20키보드&descAlignY=70">
+  </a>
 
+  <p align="center">
+    <img src="https://img.shields.io/badge/iOS-1A1A1A?style=for-the-badge&logo=apple&logoColor=white"/>
+    <img src="https://img.shields.io/badge/SwiftUI-F05138?style=for-the-badge&logo=swift&logoColor=white"/>
+    <img src="https://img.shields.io/badge/UIKit-2396F3?style=for-the-badge&logo=uikit&logoColor=white"/>
+    </div>
+  </p>
+</div>
+<br></br>
 
 ## 🧐 프로젝트 소개
 
