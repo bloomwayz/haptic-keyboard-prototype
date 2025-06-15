@@ -11,7 +11,7 @@
     - [중간 보고서](assets/midterm_report_team4.pdf)
     - [최종 보고서](assets/final_report_team4.pdf)
     - [발표 포스터](assets/poster_team4.pdf)
-
+<br></br>
 
 ## 📲 실행 방법
 
@@ -30,6 +30,7 @@
 2. Xcode에서 `Group4` 프로젝트를 열고, Signing & Capabilities 탭에서 서명 정보를 설정합니다.
 
 3. 설정이 완료되면 ⌘R를 눌러 앱을 실행할 수 있습니다.
+<br></br>
 
 
 ## ⌨️ 기능 안내
@@ -51,12 +52,12 @@
 - 한글 26자를 포함하여 마침표, 백스페이스 키, 시프트 키, 스페이스 키, 엔터 키가 있습니다.
 
 - 각 글쇠에는 햅틱 피드백이 할당되어 있습니다. 이들 패턴은 인접한 글쇠들과 구별되도록 할당하였습니다.
+<br></br>
 
 
 ## 🔗 같이 보기
 
 - [summerBreeze2007/haptic-keyboard-for-the-visually-impaired](https://github.com/summerBreeze2007/haptic-keyboard-for-the-visually-impaired)
-
 <br></br>
 
 **2025-1 인간컴퓨터상호작용 4조** \
